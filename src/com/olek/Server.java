@@ -28,11 +28,11 @@ public class Server {
 			while (true) {
 				System.out.println("Waiting for request... nr " + counter);
 
-				socket = serverSocket.accept();  //tu sie zatrzymujemy czekajac na nastepnego klienta
+				socket = serverSocket.accept();  
 				
 				scanner = new Scanner(socket.getInputStream());
 				String nick = scanner.nextLine();
-				// ////////////////////////////na potrzeby konsolowe
+				// ////////////////////////////for eclipse and testing needs...
 				
 				if(nick.equals("exit")) {
 					socket.close();
@@ -43,8 +43,8 @@ public class Server {
 				/////////////////////////////
 				
 				users.add(nick);
-				/////////////////////////////////miejsce na polaczenie sie z baza sprawdzenie czy jest i odrzucenie 
-				//jesli nie ma, jesli nie ma stworz nowego create ...
+				/////////////////////////////////potential database place
+				//
 				connections.add(socket);
 				ServerThread serverThread = new ServerThread(socket, nick,connections, users);
 				serverThread.start();
